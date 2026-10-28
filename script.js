@@ -1,31 +1,57 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const overlay = document.getElementById('authOverlay');
-    const input = document.getElementById('authInput');
-    const btn = document.getElementById('authBtn');
+function utf8ToBase64(str) {
+    return btoa(encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) => {
+        return String.fromCharCode('0x' + p1);
+    }));
+}
 
-    // При загрузке страницы сразу блокируем скролл если модалка открыта
-    if (overlay && !overlay.classList.contains('hidden')) {
-        document.body.classList.add('no-scroll');
+async function checkEmployee() {
+    const inputElement = document.getElementById("authInput");
+    const employeeId = inputElement ? inputElement.value.trim() : "";
+
+    if (!employeeId) {
+        alert("Введите ID сотрудника");
+        return;
     }
 
-    // Клик по кнопке Войти
-    btn.addEventListener('click', () => {
-        if (input.value.trim() !== '') {
-            closeAuthModal();
+    const url = `http://localhost/InfoBase/hs/api/employees/check?id=${encodeURIComponent(employeeId)}`;
+    const base64Credentials = utf8ToBase64("apiadmin:12345");
+
+    try {
+        let response = await fetch(url, {
+            method: "GET",
+            headers: {
+                "Authorization": "Basic " + base64Credentials,
+                "Accept": "application/json"
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        let data = await response.json();
+
+        if (data.exists === true) {
+            closeModal();
         } else {
-            alert('Введите ID!');
+            alert("Сотрудник с таким ID не найден");
         }
-    });
 
-    // Нажатие Enter в поле ввода
-    input.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
-            btn.click();
-        }
-    });
+    } catch (error) {
+        alert("Ошибка соединения с сервером 1С");
+    }
+}
 
-    function closeAuthModal() {
-        overlay.classList.add('hidden');
-        document.body.classList.remove('no-scroll');
+function closeModal() {
+    const authOverlay = document.getElementById("authOverlay");
+    if (authOverlay) {
+        authOverlay.style.display = "none";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    const authBtn = document.getElementById("authBtn");
+    if (authBtn) {
+        authBtn.addEventListener("click", checkEmployee);
     }
 });
