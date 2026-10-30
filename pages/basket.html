@@ -149,25 +149,7 @@
 
         </div>
     </main>
+    <script src="/basket.js"></script>
 </body>
-<script>
 
-document.querySelectorAll(".ripple-button").forEach(button => {
-    button.addEventListener("pointerenter", event => {
-        const rect = button.getBoundingClientRect();
-        button.style.setProperty(
-            "--x",
-            `${event.clientX - rect.left}px`
-        );
-        button.style.setProperty(
-            "--y",
-            `${event.clientY - rect.top}px`
-        );
-        button.classList.remove("ripple");
-        void button.offsetWidth;
-        button.classList.add("ripple");
-    });
-});
-
-</script>
 </html>
