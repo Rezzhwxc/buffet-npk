@@ -11,35 +11,42 @@
 </head>
 
 <body>
-    <div class="container">
         <div class="bunner">
-            <img src="img\bunner.png" alt="">
+            <img src="/img/bunnerPart1.png" class="mainBunner" alt="">
+            <div class="parts">
+                <img src="/img/bunnerPart2.png" class="textBunner" alt="">
+                <img src="/img/bunnerPart3.png" class="characterBunner" alt="">
+            </div>
         </div>
+    <div class="container">
+        
         <div class="menu">
             <div>
                 <h1 class="menu-title">МЕНЮ</h1>
                 <ul class="menu-tabs">
-                    <li>Новинки</li>
                     <li>Выпечка</li>
                     <li>Напитки</li>
+                    <li>Новинки</li>
                 </ul>
             </div>
 
 
             <div class="menu-user-actions">
-                <div class="menu-user-top">
-                    <span class="menu-user-id">ID: 12345</span>
-                </div>
 
                 <div class="menu-user-buttons">
                     <a href="/pages/orders.html" class="button menu-orders-button">
                         Заказы
+                        <img src="/img/history.png" alt="" class="img-shop">
                     </a>
 
                     <a href="/pages/basket.html" class="button cart-link">
                         Корзина
                         <img src="/img/bigshop.png" alt="" class="img-shop">
                     </a>
+                </div>
+                
+                <div class="menu-user-top">
+                    <span class="menu-user-id">ID: 12345</span>
                 </div>
             </div>
         </div>

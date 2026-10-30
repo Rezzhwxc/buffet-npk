@@ -5,6 +5,14 @@ body {
     margin: 0;
     padding: 0;
 }
+body::-webkit-scrollbar {
+    display: none;
+}
+/* скроллбар скрыт */
+img{
+    -webkit-user-drag: none;
+    user-select: none;
+}
 
 body.no-scroll {
     overflow: hidden;
@@ -18,10 +26,43 @@ body.no-scroll {
     padding-right: 20px;
 }
 
+/* new bunner */
 .bunner {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.mainBunner {
     width: 100%;
     height: auto;
-    padding: 0px; margin: 0px;
+    display: block;
+    min-height: 60px; 
+}
+
+.parts {
+    position: absolute; 
+    top: 0; 
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+}
+
+.textBunner {
+    height: 100%; 
+    width: auto;
+    margin-right: -2vw;
+    z-index: 2;
+}
+
+.characterBunner {
+    height: 100%;
+    width: auto;
+    z-index: 1;
 }
 
 .menu {
@@ -43,7 +84,7 @@ body.no-scroll {
 }
 
 ul.menu-tabs {
-    padding-left: 10px;
+    padding-left: 0px;
     padding-top: 15px;
 }
 
@@ -70,7 +111,6 @@ li {
     display: flex;
     background: linear-gradient(90deg, #3A5EC3, #4980AB, #569E95);
     color: #fff;
-    font-size: 15px;
     border: 1px solid transparent;
     border-radius: 5px;
     padding: 10px 60px;
@@ -89,12 +129,6 @@ li {
 .button:active {
     transform: scale(0.96);
 }
-
-.img-shop {
-    width: 17px;
-    height: auto;
-}
-
 /* Контейнер ID и кнопок */
 .menu-user-actions {
     display: flex;
@@ -115,14 +149,13 @@ li {
     flex-direction: row;
     align-items: center;
     justify-content: flex-end;
-    gap: 30px;
+    gap: 24px;
 }
 
 .menu-user-buttons .button {
     box-sizing: border-box;
     display: inline-flex;
-    flex: 0 0 198px;
-    width: 198px;
+    flex: 0 0 160px;
     height: 35px;
     padding: 0 16px;
     margin: 0;
@@ -137,15 +170,15 @@ li {
     border-radius: 5px;
 
     font-family: inherit;
-    font-size: 12px;
+    font-size: 14px;
     text-decoration: none;
 
     transition: transform 0.2s ease;
 }
 
 .menu-user-buttons .img-shop {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     object-fit: contain;
 }
 
@@ -947,8 +980,9 @@ li {
     /* ID сотрудника */
     .menu-user-id {
         color: #F2F2F2;
-        font-size: 20px;
-        margin-right: 60px;
+        font-size: 18px;
+        opacity: 0.75;
+        letter-spacing: 0.1em;
     }
 
     /* Кнопки в шапке */
@@ -1312,5 +1346,19 @@ li {
 
     .receipt-done-button {
         max-width: 100%;
+    }
+}
+
+/* adaptive for bunner */
+@media (min-width: 1921px) { 
+    .mainBunner {
+        height: 100px; 
+        object-fit: cover; 
+        object-position: center; 
+    }
+    
+    .textBunner, 
+    .characterBunner {
+        height: 100px; 
     }
 }
