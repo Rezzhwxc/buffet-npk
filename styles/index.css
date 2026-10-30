@@ -1,0 +1,541 @@
+/* Баннер */
+.bunner {
+    position: relative;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.mainBunner {
+    width: 100%;
+    height: auto;
+    display: block;
+    min-height: 60px;
+}
+
+.parts {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.textBunner {
+    height: 100%;
+    width: auto;
+    margin-right: -2vw;
+    z-index: 2;
+}
+
+.characterBunner {
+    height: 100%;
+    width: auto;
+    z-index: 1;
+}
+
+/* Меню */
+.menu {
+    display: flex;
+    list-style: none;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.menu-title {
+    color: #000000;
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.menu-tabs {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+    margin: 0;
+    padding-left: 0;
+    padding-top: 15px;
+    opacity: 70%;
+}
+
+.menu-tabs li {
+    padding-bottom: 4px;
+    border-bottom: 2px solid transparent;
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.menu-tabs li:hover {
+    color: #41948a;
+    cursor: pointer;
+    border-bottom-color: #569E95;
+}
+
+/* Кнопки пользователя */
+.menu-user-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 16px;
+}
+
+.menu-user-top {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.menu-user-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 24px;
+}
+
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 60px;
+    background: linear-gradient(90deg, #3A5EC3, #4980AB, #569E95);
+    color: #fff;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.button:hover {
+    transform: scale(1.04);
+}
+
+.button:active {
+    transform: scale(0.96);
+}
+
+.menu-user-buttons .button {
+    box-sizing: border-box;
+    display: inline-flex;
+    flex: 0 0 160px;
+    height: 35px;
+    padding: 0 16px;
+    margin: 0;
+    background: linear-gradient(90deg, #3A5EC3, #569E95);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 14px;
+    text-decoration: none;
+}
+
+.menu-user-buttons .img-shop {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+}
+
+.cart-link {
+    text-decoration: none;
+}
+
+.menu-user-id {
+    font-size: 18px;
+    letter-spacing: 0.1em;
+}
+
+/* Карточки товаров */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.card {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    border: 1px solid #848484;
+    border-radius: 12px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+}
+
+.card-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    margin-bottom: 16px;
+    background-color: #D1D5DB;
+    border: 1px solid #AFAFAF;
+    border-radius: 8px;
+}
+
+.card-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
+}
+
+.card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+    margin-bottom: 8px;
+    color: #000000;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.card-price {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 0 16px;
+    color: #000000;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.card-btn {
+    width: 100%;
+    margin-top: auto;
+    padding: 10px;
+    background: transparent;
+    color: #000000;
+    border: 1px solid #4B4B4B;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.card-btn:hover {
+    background-color: #41948a;
+    border-color: #ffffff;
+    color: white;
+}
+
+/* Авторизация */
+.auth-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(16px);
+    z-index: 9999;
+    pointer-events: auto;
+}
+
+.auth-overlay.hidden {
+    display: none;
+}
+
+.auth-modal {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 35px 120px;
+    background: transparent;
+    border-radius: 15px;
+    color: #fff;
+    text-align: center;
+    user-select: none;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+.auth-modal::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    background: linear-gradient(90deg, #3A5EC3, #4980AB, #569E95);
+    border-radius: inherit;
+    z-index: -1;
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+}
+
+.auth-modal h2 {
+    margin: 0;
+    font-size: 20px;
+}
+
+.auth-label {
+    color: #fff;
+    font-size: 15px;
+    white-space: nowrap;
+}
+
+.auth-modal input {
+    width: 280px;
+    padding: 12px 15px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+}
+
+.auth-modal input:focus {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.auth-modal button {
+    position: relative;
+    width: 280px;
+    padding: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    overflow: hidden;
+    transition: background 0.3s, transform 0.2s;
+}
+
+.auth-modal button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.6s ease;
+}
+
+.auth-modal button:hover::before {
+    left: 100%;
+}
+
+.auth-modal button:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.auth-modal button:active {
+    transform: scale(0.97);
+}
+
+.auth-error {
+    box-sizing: border-box;
+    width: 280px;
+    margin: 0;
+    padding: 8px 12px;
+    background: rgba(90, 10, 20, 0.45);
+    color: #ffffff;
+    border-radius: 8px;
+    font-size: 15px;
+    line-height: 1.35;
+    text-align: center;
+}
+
+.auth-error:empty {
+    display: none;
+}
+
+.auth-modal input.input-error {
+    box-shadow: 0 0 0 1px #ff8f8f;
+    animation: input-shake 0.35s ease;
+}
+
+@keyframes input-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+}
+
+/* Адаптив: от большего к меньшему */
+@media (min-width: 1921px) {
+    .mainBunner {
+        height: 100px;
+        object-fit: cover;
+        object-position: center;
+    }
+
+    .textBunner,
+    .characterBunner {
+        height: 100px;
+    }
+}
+
+@media (max-width: 800px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu-user-actions {
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .menu-user-buttons {
+        gap: 12px;
+    }
+
+    .menu-user-buttons .button {
+        flex: 1 1 0;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .card-image {
+        height: 120px;
+        margin-bottom: 10px;
+    }
+
+    .card-title {
+        font-size: 14px;
+        margin: 0 0 6px;
+    }
+
+    .card-price {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .card-btn {
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .auth-modal {
+        width: calc(100% - 32px);
+        padding: 30px 24px;
+    }
+
+    .auth-modal input,
+    .auth-modal button {
+        width: 100%;
+    }
+
+    .auth-error {
+        width: 100%;
+    }
+}
+
+/* Тёмная тема */
+@media (prefers-color-scheme: dark) {
+    .menu-title {
+        color: #FFFFFF;
+    }
+
+    .menu-tabs,
+    .menu-tabs li {
+        color: #A5A5A5;
+    }
+
+    .menu-tabs li:hover {
+        color: #569E95;
+        border-bottom-color: #569E95;
+    }
+
+    .menu-user-id {
+        color: #F2F2F2;
+        opacity: 0.75;
+    }
+
+    .button {
+        color: #FFFFFF;
+    }
+
+    .card {
+        background-color: #303030;
+        border-color: #505050;
+    }
+
+    .card-image {
+        background-color: #D9D9D9;
+        border-color: #555555;
+    }
+
+    .card-title {
+        color: #F2F2F2;
+    }
+
+    .card-price {
+        color: #FFFFFF;
+    }
+
+    .card-btn {
+        background-color: transparent;
+        color: #F2F2F2;
+        border-color: #D0D0D0;
+    }
+
+    .card-btn:hover {
+        background-color: #3A5EC3;
+        border-color: #3A5EC3;
+        color: #FFFFFF;
+    }
+
+    .auth-modal {
+        color: #FFFFFF;
+    }
+
+    .auth-modal input {
+        background-color: #252525;
+        color: #FFFFFF;
+        border: 1px solid #777777;
+    }
+
+    .auth-modal input::placeholder {
+        color: #A5A5A5;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-modal input.input-error {
+        animation: none;
+    }
+}

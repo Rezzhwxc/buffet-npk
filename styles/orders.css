@@ -1,32 +1,8 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
-
-body {
-    font-family: "Inter", sans-serif;
-    margin: 0;
-    padding: 0;
-}
-
-body.no-scroll {
-    overflow: hidden;
-}
-
-.container {
-    max-width: 1075px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: 20px;
-    padding-right: 20px;
-}
-
-
-
-/* Страница заказов */
 .orders-page {
     min-height: 100vh;
-    background-color: #edf6fc;
     padding-top: 42px;
     padding-bottom: 60px;
-    box-sizing: border-box;
+    background-color: #edf6fc;
 }
 
 .orders-header {
@@ -46,11 +22,9 @@ body.no-scroll {
     align-items: center;
     gap: 8px;
     margin-top: 6px;
-
     color: #777;
     font-size: 15px;
     text-decoration: none;
-
     transition: color 0.2s ease;
 }
 
@@ -65,10 +39,8 @@ body.no-scroll {
 }
 
 .order-card {
-    box-sizing: border-box;
     width: 100%;
     padding: 24px 32px 32px;
-
     background-color: #fff;
     border: 1px solid #d5d5d5;
     box-shadow: 0 2px 3px rgb(0 0 0 / 20%);
@@ -84,9 +56,9 @@ body.no-scroll {
 .order-card-header h2,
 .order-card-header p {
     margin: 0;
+    color: #111;
     font-size: 17px;
     font-weight: 400;
-    color: #111;
 }
 
 .order-card-header h2 {
@@ -94,8 +66,8 @@ body.no-scroll {
 }
 
 .order-table {
-    font-size: 11px;
     color: #292929;
+    font-size: 11px;
 }
 
 .order-table-header,
@@ -112,9 +84,9 @@ body.no-scroll {
 }
 
 .order-item {
-    font-size: 12px;
     align-items: start;
     margin-bottom: 3px;
+    font-size: 12px;
 }
 
 .order-item span:nth-child(2) {
@@ -122,7 +94,7 @@ body.no-scroll {
 }
 
 .order-cabinet {
-    text-align: leftз;
+    text-align: left;
     font-size: 12px;
     font-weight: 600;
 }
@@ -132,8 +104,8 @@ body.no-scroll {
     align-items: baseline;
     gap: 10px;
     margin-top: 16px;
-    font-size: 16px;
     color: #111;
+    font-size: 16px;
 }
 
 .order-total-line {
@@ -142,10 +114,37 @@ body.no-scroll {
     border-bottom: 2px dotted #333;
 }
 
+/* Адаптив */
+@media (max-width: 600px) {
+    .orders-page {
+        padding-top: 28px;
+    }
 
-    
-/* ===== ТЁМНАЯ ТЕМА ЗАКАЗЫ ===== */
+    .orders-header {
+        margin-bottom: 30px;
+    }
 
+    .order-card {
+        padding: 20px 16px 24px;
+    }
+
+    .order-card-header {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+
+    .order-table-header,
+    .order-item {
+        grid-template-columns: minmax(0, 1.5fr) 55px 60px;
+        gap: 8px;
+    }
+
+    .order-item span:first-child {
+        overflow-wrap: anywhere;
+    }
+}
+
+/* Тёмная тема */
 @media (prefers-color-scheme: dark) {
     .orders-page {
         background-color: #1B1B1B;
@@ -195,37 +194,3 @@ body.no-scroll {
         border-bottom-color: #999;
     }
 }
-
-
-/* Адаптация под небольшие экраны */
-@media (max-width: 600px) {
-    .orders-page {
-        padding-top: 28px;
-    }
-
-    .orders-header {
-        margin-bottom: 30px;
-    }
-
-    .order-card {
-        padding: 20px 16px 24px;
-    }
-
-    .order-card-header {
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-
-    .order-table-header,
-    .order-item {
-        grid-template-columns: minmax(0, 1.5fr) 55px 60px;
-        gap: 8px;
-    }
-
-    .order-item span:first-child {
-        overflow-wrap: anywhere;
-    }
-}
-
-
-
