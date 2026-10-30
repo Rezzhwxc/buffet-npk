@@ -5,24 +5,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
-    <link rel="icon" type="image/svg+xml" href="/favicon/NPK.svg"/>
-    <link rel="stylesheet" href="/styles/styles.css"> <!-- добавьте путь папки -->
-    <title>Студенческий Буфет | НПК </title> 
+    <link rel="icon" type="image/svg+xml" href="/favicon/NPK.svg">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <title>Студенческий Буфет | НПК</title>
 </head>
 
 <body>
-        <div class="bunner">
-            <img src="/img/bunnerPart1.png" class="mainBunner" alt="">
-            <div class="parts">
-                <img src="/img/bunnerPart2.png" class="textBunner" alt="">
-                <img src="/img/bunnerPart3.png" class="characterBunner" alt="">
-            </div>
+
+    <div class="bunner">
+        <img src="/img/bunnerPart1.png" class="mainBunner" alt="">
+
+        <div class="parts">
+            <img src="/img/bunnerPart2.png" class="textBunner" alt="">
+            <img src="/img/bunnerPart3.png" class="characterBunner" alt="">
         </div>
+    </div>
+
     <div class="container">
-        
+
         <div class="menu">
+
             <div>
                 <h1 class="menu-title">МЕНЮ</h1>
+
                 <ul class="menu-tabs">
                     <li>Выпечка</li>
                     <li>Напитки</li>
@@ -30,10 +35,10 @@
                 </ul>
             </div>
 
-
             <div class="menu-user-actions">
 
                 <div class="menu-user-buttons">
+
                     <a href="/pages/orders.html" class="button menu-orders-button">
                         Заказы
                         <img src="/img/history.png" alt="" class="img-shop">
@@ -43,93 +48,56 @@
                         Корзина
                         <img src="/img/bigshop.png" alt="" class="img-shop">
                     </a>
+
                 </div>
-                
+
                 <div class="menu-user-top">
-                    <span class="menu-user-id">ID: 12345</span>
+                    <span class="menu-user-id">ID: Не авторизован</span>
                 </div>
+
             </div>
+
         </div>
+
         <div class="content">
-            <div class="cards-grid">
-                <!-- Карточка 1 -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" alt="Вкусняшка">
-                    </div>
-                    <div class="card-conetent">
-                        <h3 class="card-title">Какая-то вкусняшка</h3>
-                        <p class="card-price">319 ₽</p>
-                        <button class="card-btn">В корзину</button>
-                    </div>
-                </div>
-                <!-- Карточка 2 -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" alt="Вкусняшка">
-                    </div>
-                    <div class="card-conetent">
-                        <h3 class="card-title">Какая-то вкусняшка</h3>
-                        <p class="card-price">319 ₽</p>
-                        <button class="card-btn">В корзину</button>
-                    </div>
-                </div>
-                <!-- Карточка 3 -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" alt="Вкусняшка">
-                    </div>
-                    <div class="card-conetent">
-                        <h3 class="card-title">Какая-то вкусняшка</h3>
-                        <p class="card-price">319 ₽</p>
-                        <button class="card-btn">В корзину</button>
-                    </div>
-                </div>
-                <!-- Карточка 4 -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" alt="Вкусняшка">
-                    </div>
-                    <div class="card-conetent">
-                        <h3 class="card-title">Какая-то вкусняшка</h3>
-                        <p class="card-price">319 ₽</p>
-                        <button class="card-btn">В корзину</button>
-                    </div>
-                </div>
-                <!-- Карточка 5 -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" alt="Вкусняшка">
-                    </div>
-                    <div class="card-conetent">
-                        <h3 class="card-title">Какая-то вкусняшка</h3>
-                        <p class="card-price">319 ₽</p>
-                        <button class="card-btn">В корзину</button>
-                    </div>
-                </div>
-                <!-- Карточка 6 -->
-                <div class="card">
-                    <div class="card-image">
-                        <img src="" alt="Вкусняшка">
-                    </div>
-                    <div class="card-conetent">
-                        <h3 class="card-title">Какая-то вкусняшка</h3>
-                        <p class="card-price">319 ₽</p>
-                        <button class="card-btn">В корзину</button>
-                    </div>
-                </div>
-            </div>
+
+            <div class="cards-grid"></div>
+
+        </div>
+
+    </div>
+
+    <div class="auth-overlay" id="authOverlay">
+        <div class="auth-modal">
+
+            <h2>АВТОРИЗАЦИЯ</h2>
+
+            <form class="auth-form" id="authForm" novalidate>
+
+                <label for="authInput" class="auth-label">
+                    Введите свой ID:
+                </label>
+
+                <input
+                    type="text"
+                    id="authInput"
+                    placeholder="ID сотрудника"
+                    autocomplete="off"
+                    spellcheck="false"
+                    inputmode="numeric"
+                >
+
+                <p class="auth-error" id="authError" role="alert"></p>
+
+                <button type="submit" id="authBtn">Войти</button>
+
+            </form>
+
         </div>
     </div>
+
     <script src="/script.js"></script>
-    <!-- <div class="auth-overlay" id="authOverlay">
-        <div class="auth-modal">
-            <h2>АВТОРИЗАЦИЯ</h2>
-            <label for="authInput" class="auth-label">Введите свой ID:</label>
-            <input type="text" id="authInput" placeholder="ID сотрудника" autocomplete="off" spellcheck="false">
-            <button id="authBtn">Войти</button>
-        </div>
-    </div> -->
+
 </body>
 
 </html>

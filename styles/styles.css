@@ -8,7 +8,7 @@ body {
 body::-webkit-scrollbar {
     display: none;
 }
-/* скроллбар скрыт */
+
 img{
     -webkit-user-drag: none;
     user-select: none;
@@ -26,7 +26,6 @@ body.no-scroll {
     padding-right: 20px;
 }
 
-/* new bunner */
 .bunner {
     position: relative;
     width: 100%;
@@ -38,22 +37,22 @@ body.no-scroll {
     width: 100%;
     height: auto;
     display: block;
-    min-height: 60px; 
+    min-height: 60px;
 }
 
 .parts {
-    position: absolute; 
-    top: 0; 
+    position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
 }
 
 .textBunner {
-    height: 100%; 
+    height: 100%;
     width: auto;
     margin-right: -2vw;
     z-index: 2;
@@ -129,7 +128,7 @@ li {
 .button:active {
     transform: scale(0.96);
 }
-/* Контейнер ID и кнопок */
+
 .menu-user-actions {
     display: flex;
     flex-direction: column;
@@ -137,7 +136,6 @@ li {
     gap: 16px;
 }
 
-/* ID сотрудника */
 .menu-user-top {
     display: flex;
     align-items: center;
@@ -227,7 +225,7 @@ li {
 
 .cards-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 30px;
     margin-top: 30px;
     margin-bottom: 50px;
@@ -292,10 +290,6 @@ li {
     color: white;
 }
 
-
-
-
-/* КОРЗИНА */
 .basket-page {
     min-height: 100vh;
     color: #303030;
@@ -334,7 +328,6 @@ li {
 .back-to-menu:hover {
     color: #2e4da8;
 }
-
 
 .basket-content {
     display: grid;
@@ -403,10 +396,6 @@ li {
     opacity: 66%;
 }
 
-/* .clear-cart-icon:hover{
-    opacity: 100%;
-} */
-
 .cart-items-list {
     padding: 23px 17px 22px 26px;
 }
@@ -428,9 +417,9 @@ li {
 }
 
 .basket-item-info {
-    /* background-color: #61c143; */
+
     max-width: 180px;
-    /* margin-left: 55px; */
+
 }
 
 .basket-item-category {
@@ -546,8 +535,6 @@ li {
     opacity: 100%;
 }
 
-
-
 .basket-item-total {
     margin: 17px 0 0;
     color: #292929;
@@ -653,7 +640,6 @@ li {
     transition: background .25s ease, box-shadow .25s ease;
 }
 
-/* Основа эффекта ряби */
 .checkout-button {
     position: relative;
     overflow: hidden;
@@ -692,7 +678,6 @@ li {
     isolation: isolate;
 }
 
-/* Запуск анимации */
 .ripple-button.ripple::before {
     animation: cursor-ripple 0.8s ease-out;
 }
@@ -776,10 +761,6 @@ li {
     }
 }
 
-
-
-/* ===== ТЁМНАЯ ТЕМА КОРЗИНЫ ===== */
-
 @media (prefers-color-scheme: dark) {
 
     .basket-page {
@@ -788,7 +769,6 @@ li {
         background-color: #1B1B1B;
     }
 
-    /* Заголовок и возврат в меню */
     .basket-title {
         color: #FFFFFF;
     }
@@ -801,7 +781,6 @@ li {
         color: #569E95;
     }
 
-    /* Основная панель с товарами */
     .cart-items-panel {
         background-color: #1B1B1B;
         border-color: #777777;
@@ -823,7 +802,6 @@ li {
         color: #569E95;
     }
 
-    /* Карточка товара */
     .basket-item-title {
         color: #F5F5F5;
     }
@@ -837,12 +815,10 @@ li {
         color: #FFFFFF;
     }
 
-    /* Изображение товара, если у него нет своей картинки */
     .basket-item-image {
         background-color: #D9D9D9;
     }
 
-    /* Счётчик количества */
     .quantity-counter {
         border-color: #666666;
     }
@@ -863,13 +839,11 @@ li {
         background-color: #3A3A3A;
     }
 
-    /* Кнопка удаления товара */
     .remove-item-icon,
     .clear-cart-icon {
         opacity: 0.8;
     }
 
-    /* Блок итоговой суммы */
     .order-summary {
         background-color: #2A2A2A;
         border-color: #777777;
@@ -885,7 +859,6 @@ li {
         color: #A5A5A5;
     }
 
-    /* Выбор кабинета */
     .delivery-label {
         color: #F2F2F2;
     }
@@ -901,7 +874,6 @@ li {
         color: #F2F2F2;
     }
 
-    /* Кнопка заказа */
     .checkout-button {
         background-color: #3B5FC5;
         color: #FFFFFF;
@@ -911,7 +883,6 @@ li {
         background-color: #496ED5;
     }
 
-    /* Чек после оформления заказа */
     .receipt {
         background-color: #1B1B1B;
         color: #F2F2F2;
@@ -945,25 +916,18 @@ li {
     }
 }
 
-
-
-/* ===== ТЁМНАЯ ТЕМА МЕНЮ ===== */
-
 @media (prefers-color-scheme: dark) {
 
-    /* Общий фон страницы */
     body {
         color-scheme: dark;
         background-color: #1B1B1B;
         color: #F2F2F2;
     }
 
-    /* Заголовок меню */
     .menu-title {
         color: #FFFFFF;
     }
 
-    /* Вкладки: Выпечка, Напитки, Новинки */
     .menu-tabs {
         color: #A5A5A5;
     }
@@ -977,7 +941,6 @@ li {
         border-bottom-color: #569E95;
     }
 
-    /* ID сотрудника */
     .menu-user-id {
         color: #F2F2F2;
         font-size: 18px;
@@ -985,34 +948,28 @@ li {
         letter-spacing: 0.1em;
     }
 
-    /* Кнопки в шапке */
     .button {
         color: #FFFFFF;
     }
 
-    /* Карточки товаров */
     .card {
         background-color: #303030;
         border-color: #505050;
     }
 
-    /* Область изображения */
     .card-image {
         background-color: #D9D9D9;
         border-color: #555555;
     }
 
-    /* Название товара */
     .card-title {
         color: #F2F2F2;
     }
 
-    /* Цена товара */
     .card-price {
         color: #FFFFFF;
     }
 
-    /* Кнопка "В корзину" */
     .card-btn {
         background-color: transparent;
         color: #F2F2F2;
@@ -1025,12 +982,10 @@ li {
         color: #FFFFFF;
     }
 
-    /* Кнопка обновления, если она есть */
     .menu-refresh-button {
         color: #F2F2F2;
     }
 
-    /* Модальное окно авторизации */
     .auth-modal {
         color: #FFFFFF;
     }
@@ -1045,7 +1000,6 @@ li {
         color: #A5A5A5;
     }
 }
-
 
 .auth-overlay {
     position: fixed;
@@ -1114,7 +1068,6 @@ li {
     transition: background 0.3s, transform 0.2s;
 }
 
-/* Сам блик */
 .auth-modal button::before {
     content: '';
     position: absolute;
@@ -1165,18 +1118,13 @@ li {
     box-sizing: border-box;
 }
 
-
-
-
-/* =====    ЧЕК ЗАКАЗА ===== */
-
 .receipt {
     width: 100%;
     min-height: 304px;
     box-sizing: border-box;
     padding: 22px 24px 23px;
     border: 1px solid #a5a5a5;
-    /* background: #ffffff; */
+
     color: #303030;
 
     display: flex;
@@ -1184,7 +1132,6 @@ li {
     align-items: center;
 }
 
-/* Круг с галочкой */
 .receipt-success-icon {
     width: 55px;
     height: 55px;
@@ -1198,9 +1145,6 @@ li {
     object-fit: contain;
 }
 
-
-/* Заголовок */
-
 .receipt-title {
     margin: 15px 0 16px;
     font-size: 20px;
@@ -1209,7 +1153,6 @@ li {
     text-align: center;
 }
 
-/* Список товаров */
 .receipt-details {
     width: 100%;
     max-width: 400px;
@@ -1248,8 +1191,6 @@ li {
     flex-shrink: 0;
     white-space: nowrap;
 }
-
-/* Количество и итог */
 
 .receipt-summary {
     width: 100%;
@@ -1295,8 +1236,6 @@ li {
     white-space: nowrap;
 }
 
-/* Кнопка «Готово» */
-
 .receipt-done-button {
     width: 300px;
     min-height: 25px;
@@ -1324,8 +1263,6 @@ li {
     background: #2e4da8;
 }
 
-/* Адаптация для небольших экранов */
-
 @media (max-width: 480px) {
     .receipt {
         padding: 22px 14px;
@@ -1349,16 +1286,183 @@ li {
     }
 }
 
-/* adaptive for bunner */
-@media (min-width: 1921px) { 
+@media (min-width: 1921px) {
     .mainBunner {
-        height: 100px; 
-        object-fit: cover; 
-        object-position: center; 
+        height: 100px;
+        object-fit: cover;
+        object-position: center;
     }
-    
-    .textBunner, 
+
+    .textBunner,
     .characterBunner {
-        height: 100px; 
+        height: 100px;
     }
+}
+
+.menu {
+    align-items: flex-start;
+}
+
+.auth-modal input:focus {
+    box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.55);
+}
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin: 0;
+}
+
+@media (max-width: 800px) {
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .menu {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu-user-actions {
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .menu-user-buttons {
+        gap: 12px;
+    }
+
+    .menu-user-buttons .button {
+        flex: 1 1 0;
+    }
+
+    .auth-modal {
+        padding: 30px 24px;
+        width: calc(100% - 32px);
+        box-sizing: border-box;
+    }
+
+    .auth-modal input,
+    .auth-modal button {
+        width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        padding-left: 14px;
+        padding-right: 14px;
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .card {
+        padding: 12px;
+        border-radius: 10px;
+    }
+
+    .card-image {
+        height: 120px;
+        margin-bottom: 10px;
+    }
+
+    .card-title {
+        font-size: 14px;
+        margin: 0 0 6px;
+    }
+
+    .card-price {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+
+    .card-btn {
+        padding: 8px;
+        font-size: 13px;
+    }
+}
+
+.auth-error {
+    box-sizing: border-box;
+    width: 280px;
+    margin: 0;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(90, 10, 20, 0.45);
+    color: #ffffff;
+    font-size: 15px;
+    line-height: 1.35;
+    text-align: center;
+}
+
+.auth-error:empty {
+    display: none;
+}
+
+.auth-modal input.input-error {
+    box-shadow: 0 0 0 1px #ff8f8f;
+    animation: input-shake 0.35s ease;
+}
+
+@keyframes input-shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-3px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .auth-modal input.input-error {
+        animation: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .auth-error {
+        width: 100%;
+    }
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.card-content .card-btn {
+    margin-top: auto;
+}
+
+.card {
+    min-width: 0;
+}
+
+.card-content {
+    min-width: 0;
+}
+
+.card-title {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    text-overflow: ellipsis;
+}
+
+.card-price {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
