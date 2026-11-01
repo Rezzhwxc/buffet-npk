@@ -27,7 +27,10 @@
         <div class="menu">
 
             <div>
-                <h1 class="menu-title">МЕНЮ</h1>
+                <div class="id-mobile">
+                    <h1 class="menu-title">МЕНЮ</h1>
+                    <span class="menu-user-id" id="mobileId">ID: Не авторизован</span>
+                </div>
 
                 <ul class="menu-tabs">
                     <li>Выпечка</li>
@@ -60,6 +63,10 @@
 
         </div>
 
+        <div class="serch-box">
+            <input id="index-search" type="text" placeholder="Поиск">
+        </div>
+
         <div class="content">
 
             <div class="cards-grid"></div>
@@ -68,7 +75,7 @@
 
     </div>
 
-    <!-- <div class="auth-overlay" id="authOverlay">
+    <div class="auth-overlay" id="authOverlay">
         <div class="auth-modal">
 
             <h2>АВТОРИЗАЦИЯ</h2>
@@ -95,10 +102,10 @@
             </form>
 
         </div>
-    </div> -->
+    </div>
 
     <script src="/script.js"></script>
-
+    <script src="/search.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost/InfoBase/hs/api";
+const API_BASE = "http://100.125.44.46/InfoBase/hs/api";
 const API_LOGIN = "apiadmin";
 const API_PASSWORD = "12345";
 const SESSION_KEY = "employeeId";
@@ -20,11 +20,11 @@ function getSavedEmployeeId() {
 }
 
 function showEmployeeId(id) {
-    const userId = document.querySelector(".menu-user-id");
+    const userId = document.querySelectorAll(".menu-user-id");
 
-    if (userId) {
+    userId.forEach(userId => {
         userId.textContent = `ID: ${id}`;
-    }
+    });
 }
 
 function utf8ToBase64(str) {
