@@ -3,6 +3,8 @@ const API_LOGIN = "apiadmin";
 const API_PASSWORD = "12345";
 const SESSION_KEY = "employeeId";
 
+let allProducts = [];
+
 function saveEmployeeId(id) {
     try {
         sessionStorage.setItem(SESSION_KEY, id);
@@ -161,14 +163,20 @@ async function loadMenu() {
             throw new Error("Некорректный формат ответа API");
         }
 
-        renderMenu(products);
+        allProducts = products;
+            if (typeof applySearch === "function") {
+                applySearch();
+            } else {
+                renderMenu(products);
+            }
+
     } catch (error) {
         console.error(error);
         cardsGrid.innerHTML = "<p>Не удалось загрузить меню.</p>";
     }
 }
 
-function renderMenu(products) {
+function renderMenu(products, emptyText = "Пока нет доступных товаров.") {
     const cardsGrid = document.querySelector(".cards-grid");
 
     if (!cardsGrid) return;
@@ -176,7 +184,7 @@ function renderMenu(products) {
     cardsGrid.innerHTML = "";
 
     if (products.length === 0) {
-        cardsGrid.innerHTML = "<p>Пока нет доступных товаров.</p>";
+        cardsGrid.innerHTML = `<p>${emptyText}</p>`;
         return;
     }
 
