@@ -1,4 +1,4 @@
-const API_BASE = "http://localhost/InfoBase/hs/api";
+const API_BASE = "http://100.125.44.46/InfoBase/hs/api";
 const API_LOGIN = "apiadmin";
 const API_PASSWORD = "12345";
 const SESSION_KEY = "employeeId";
