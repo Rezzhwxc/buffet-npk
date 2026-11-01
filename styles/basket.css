@@ -1,3 +1,5 @@
+.receipt[hidden] { display: none; }
+
 .basket-page {
     min-height: 100vh;
     color: #303030;
@@ -113,6 +115,7 @@
     align-items: start;
     gap: 10px;
     min-width: 0;
+    margin-bottom: 15px;
 }
 
 .basket-item-image {
@@ -522,6 +525,91 @@
 
 .receipt-done-button:hover {
     background: #2e4da8;
+}
+
+/* модалка */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal {
+    width: min(100%, 400px);
+    padding: 24px;
+    border-radius: 16px;
+    background: Canvas;
+    color: CanvasText;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    animation: modal-in 0.15s ease-out;
+}
+
+@keyframes modal-in {
+    from { opacity: 0; transform: scale(0.95); }
+    to   { opacity: 1; transform: scale(1); }
+}
+
+.modal-title {
+    margin: 0 0 8px;
+    font-size: 20px;
+}
+
+.modal-text {
+    margin: 0 0 24px;
+    opacity: 0.75;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    font: inherit;
+    cursor: pointer;
+}
+
+.modal-btn[hidden] {
+    display: none;
+}
+
+.modal-btn-secondary {
+    background: transparent;
+    color: inherit;
+    border-color: color-mix(in srgb, CanvasText 30%, transparent);
+}
+
+.modal-btn-primary {
+    background: CanvasText;
+    color: Canvas;
+}
+
+.modal-btn-danger {
+    background: #d93025;
+    color: #fff;
+}
+
+@media (max-width: 480px) {
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal-btn {
+        width: 100%;
+    }
 }
 
 /* Адаптив: от большего к меньшему */
@@ -1021,5 +1109,42 @@
 
     .receipt-done-button:hover {
         background-color: #496ED5;
+    }
+}
+
+@media (min-width: 769px) {
+    .basket-item {
+        display: grid;
+        grid-template-columns: 160px minmax(0, 1fr) auto 140px;
+        align-items: center;
+        column-gap: 24px;
+    }
+
+    .basket-item-image {
+        width: 160px;
+        height: 100px;
+        object-fit: cover;
+    }
+
+    .basket-item-info {
+        min-width: 0;
+    }
+
+    .basket-item-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .quantity-counter {
+        justify-self: center;
+    }
+
+    .basket-item-details {
+        width: 140px;
+        justify-self: end;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
     }
 }

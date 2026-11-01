@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="color-scheme" content="light dark">
+    <link rel="icon" type="image/svg+xml" href="/favicon/NPK.svg">
     <link rel="stylesheet" href="/styles/styles.css">
     <link rel="stylesheet" href="/styles/basket.css">
     <title>Корзина | Студенческий буфет</title>
@@ -33,31 +34,8 @@
                         </button>
                     </div>
 
-                    <div class="cart-items-list">
-                        <article class="basket-item">
-                            <img src="/img/image.png" alt="Круассан с шоколадом"class="basket-item-image">
+                    <div class="cart-items-list"></div>
 
-                            <div class="basket-item-info">
-                                <span class="basket-item-category">Выпечка</span>
-                                <h3 class="basket-item-title">Круассан с шоколадом</h3>
-                                <p class="basket-item-unit-label">Цена за шт.</p>
-                            </div>
-
-                            <div class="quantity-counter" aria-label="Количество товара">
-                                <button type="button" class="counter-btn minus" aria-label="Уменьшить количество">−</button>
-                                <input type="number"  class="counter-input"  value="2"  min="1" max="99" aria-label="Количество круассанов">
-                                <button type="button" class="counter-btn plus" aria-label="Увеличить количество">+</button>
-                            </div>
-
-                            <div class="basket-item-details">
-                                <button type="button" class="remove-item" aria-label="Удалить круассан из корзины">
-                                    <img width="20" height="20" class="remove-item-icon" src="https://img.icons8.ru/external-tanah-basah-basic-outline-tanah-basah/48/external-recycle-bin-nature-tanah-basah-basic-outline-tanah-basah.png" alt="basket"/>
-                                </button>
-                                <p class="basket-item-total">298₽</p>
-                                <p class="basket-item-unit-price">149₽</p>
-                            </div>
-                        </article>
-                    </div>
                 </section>
 
                 <aside class="order-summary" aria-label="Итог заказа">
@@ -97,7 +75,7 @@
             </div>
 
             <!-- Чек заказа -->
-            <section class="receipt" aria-labelledby="receipt-title">
+            <section class="receipt" aria-labelledby="receipt-title" hidden>
 
                 <div class="receipt-success-icon">
                     <img
@@ -111,22 +89,7 @@
 
                 <!-- Список товаров -->
                 <div class="receipt-details">
-                    <div class="receipt-items">
-                        <div class="receipt-item">
-                            <span class="receipt-item-name">
-                                Круассан с шоколадом (2шт)
-                            </span>
-                            <span class="receipt-item-dots" aria-hidden="true"></span>
-                            <span class="receipt-item-price">298₽</span>
-                        </div>
-                        <div class="receipt-item">
-                            <span class="receipt-item-name">
-                                Кофе «Американо» (2шт)
-                            </span>
-                            <span class="receipt-item-dots" aria-hidden="true"></span>
-                            <span class="receipt-item-price">298₽</span>
-                        </div>
-                    </div>
+                    <div class="receipt-items"></div>
 
                     <!-- Итог заказа -->
                     <div class="receipt-summary">
@@ -149,6 +112,20 @@
 
         </div>
     </main>
+
+    <div class="modal-overlay" id="confirmOverlay" hidden>
+        <div class="modal" role="dialog" aria-modal="true"
+            aria-labelledby="confirmTitle" aria-describedby="confirmText">
+            <h2 class="modal-title" id="confirmTitle"></h2>
+            <p class="modal-text" id="confirmText"></p>
+            <div class="modal-actions">
+                <button type="button" class="modal-btn modal-btn-secondary" id="confirmCancel">Отмена</button>
+                <button type="button" class="modal-btn modal-btn-primary" id="confirmOk">ОК</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="/cart.js"></script>
     <script src="/basket.js"></script>
 </body>
 

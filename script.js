@@ -1,6 +1,6 @@
 const API_BASE = "http://100.125.44.46/InfoBase/hs/api";
 const API_LOGIN = "apiadmin";
-const API_PASSWORD = "12345";
+const API_PASSWORD = "olefI85";
 const SESSION_KEY = "employeeId";
 
 let allProducts = [];
@@ -226,6 +226,17 @@ function renderMenu(products, emptyText = "Пока нет доступных т
         button.type = "button";
         button.textContent = "В корзину";
         button.dataset.code = product.code ?? "";
+
+        button.addEventListener("click", () => {
+            addToCart(product);
+
+            button.textContent = "Добавлено";
+            button.disabled = true;
+            setTimeout(() => {
+                button.textContent = "В корзину";
+                button.disabled = false;
+            }, 800);
+        });
 
         content.append(title, price, button);
         card.append(imageContainer, content);
