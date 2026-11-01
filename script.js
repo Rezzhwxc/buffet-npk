@@ -154,11 +154,12 @@ async function loadMenu() {
         }
 
         allProducts = products;
-            if (typeof applySearch === "function") {
-                applySearch();
-            } else {
-                renderMenu(products);
-            }
+
+        if (typeof applySearch === "function") {
+            applySearch();
+        } else {
+            renderMenu(products);
+        }
 
     } catch (error) {
         console.error(error);
@@ -222,6 +223,7 @@ function renderMenu(products, emptyText = "Пока нет доступных т
 
             button.textContent = "Добавлено";
             button.disabled = true;
+
             setTimeout(() => {
                 button.textContent = "В корзину";
                 button.disabled = false;
