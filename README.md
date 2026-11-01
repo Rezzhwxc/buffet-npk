@@ -12,9 +12,9 @@
 3. Найдите `Git: Clone`.
 4. Вставьте ссылку:
 
-text
+```text
 https://github.com/Rezzhwxc/buffet-npk.git
-
+```
 
 5. Выберите папку для сохранения проекта.
 6. После загрузки нажмите **Open**.
@@ -23,9 +23,9 @@ https://github.com/Rezzhwxc/buffet-npk.git
 
 В VS Code откройте **Terminal → New Terminal** и выполните:
 
-powershell
+```powershell
 npm install
-
+```
 
 ### 4. Настройте API
 
@@ -37,12 +37,12 @@ npm install
 
 В терминале VS Code выполните:
 
-powershell
+```powershell
 npm run dev
-
+```
 
 Откройте сайт в браузере:
 
 http://localhost:5173/pages/
 
-Важно: не закрывайте терминал во время работы сайта. Для остановки нажмите `Ctrl + C`. Не публикуйте файл `.env.local` и не передавайте пароль посторонним.
+**Важно:** не закрывайте терминал во время работы сайта. Для остановки нажмите `Ctrl + C`. Не публикуйте файл `.env.local` и не передавайте пароль посторонним.
