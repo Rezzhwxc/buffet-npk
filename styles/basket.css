@@ -598,8 +598,12 @@
 }
 
 .modal-btn-danger {
-    background: #d93025;
+    background: #d931259c;
     color: #fff;
+    transition: all 0.3s ease;
+}
+.modal-btn-danger:hover{
+    background: #d93125f6;
 }
 
 @media (max-width: 480px) {

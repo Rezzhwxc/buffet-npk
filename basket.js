@@ -125,7 +125,7 @@ function createItem(item) {
 
         <div class="basket-item-details">
             <button type="button" class="remove-item" aria-label="Удалить ${name} из корзины">
-                <img width="20" height="20" class="remove-item-icon" src="https://img.icons8.ru/external-tanah-basah-basic-outline-tanah-basah/48/external-recycle-bin-nature-tanah-basah-basic-outline-tanah-basah.png" alt="">
+                <img width="20" height="20" class="remove-item-icon" src="/img/binn.png" alt="">
             </button>
             <p class="basket-item-total">${formatPrice(item.price * item.qty)}</p>
             <p class="basket-item-unit-price">${formatPrice(item.price)}</p>
