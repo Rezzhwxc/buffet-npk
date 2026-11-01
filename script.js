@@ -1,6 +1,5 @@
-const API_BASE = "http://100.125.44.46/InfoBase/hs/api";
-const API_LOGIN = "apiadmin";
-const API_PASSWORD = "olefI85";
+
+const API_BASE = "/api";
 const SESSION_KEY = "employeeId";
 
 let allProducts = [];
@@ -27,21 +26,6 @@ function showEmployeeId(id) {
     userId.forEach(userId => {
         userId.textContent = `ID: ${id}`;
     });
-}
-
-function utf8ToBase64(str) {
-    return btoa(
-        encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (_, p1) =>
-            String.fromCharCode(parseInt(p1, 16))
-        )
-    );
-}
-
-function getAuthHeaders() {
-    return {
-        "Authorization": `Basic ${utf8ToBase64(`${API_LOGIN}:${API_PASSWORD}`)}`,
-        "Accept": "application/json"
-    };
 }
 
 function showAuthError(message) {
@@ -103,7 +87,9 @@ async function checkEmployee() {
             `${API_BASE}/employees/check?id=${encodeURIComponent(employeeId)}`,
             {
                 method: "GET",
-                headers: getAuthHeaders()
+                headers: {
+                    "Accept": "application/json"
+                }
             }
         );
 
@@ -119,7 +105,9 @@ async function checkEmployee() {
             clearAuthError();
             closeModal();
         } else {
-            showAuthError("ID не найден. Проверьте идентификатор и попробуйте снова");
+            showAuthError(
+                "ID не найден. Проверьте идентификатор и попробуйте снова"
+            );
         }
     } catch (error) {
         console.error(error);
@@ -150,7 +138,9 @@ async function loadMenu() {
     try {
         const response = await fetch(`${API_BASE}/menu`, {
             method: "GET",
-            headers: getAuthHeaders()
+            headers: {
+                "Accept": "application/json"
+            }
         });
 
         if (!response.ok) {
