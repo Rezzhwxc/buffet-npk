@@ -75,39 +75,51 @@
             </div>
 
             <!-- Чек заказа -->
-            <section class="receipt" aria-labelledby="receipt-title" hidden>
+            
+            <div class="receipt-overlay" id="receiptOverlay" hidden>
+                <section
+                    class="receipt"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-labelledby="receipt-title"
+                >
+                    <div class="receipt-success-icon">
+                        <img
+                            src="/img/succesOrder.png"
+                            alt="Успешно"
+                            class="receipt-success-image"
+                        >
+                    </div>
 
-                <div class="receipt-success-icon">
-                    <img
-                        src="/img/succesOrder.png" alt="галочка" class="receipt-success-image"
-                    >
-                </div>
+                    <h2 class="receipt-title" id="receipt-title">
+                        Заказ оформлен!
+                    </h2>
 
-                <h2 class="receipt-title" id="receipt-title">
-                    Заказ оформлен!
-                </h2>
+                    <div class="receipt-details">
+                        <div class="receipt-items"></div>
 
-                <!-- Список товаров -->
-                <div class="receipt-details">
-                    <div class="receipt-items"></div>
+                        <div class="receipt-summary">
+                            <div class="receipt-count">
+                                <span class="receipt-label">Всего товаров:</span>
+                                <span class="receipt-count-value"></span>
+                            </div>
 
-                    <!-- Итог заказа -->
-                    <div class="receipt-summary">
-                        <div class="receipt-count">
-                            <span class="receipt-label">Всего товаров:</span>
-                            <span class="receipt-count-value">4 шт.</span>
-                        </div>
-                        <div class="receipt-total">
-                            <span class="receipt-total-label">Итого:</span>
-                            <span class="receipt-total-price">596₽</span>
+                            <div class="receipt-total">
+                                <span class="receipt-total-label">Итого:</span>
+                                <span class="receipt-total-price"></span>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
-                <a href="/pages/index.html" class="receipt-done-button ripple-button"> 
-                    <span>Готово</span>
-                </a>
-            </section>
+
+                    <a
+                        href="/pages/index.html"
+                        class="receipt-done-button ripple-button"
+                    >
+                        <span>Готово</span>
+                    </a>
+                </section>
+            </div>
+
 
         </div>
     </main>

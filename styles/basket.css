@@ -1,5 +1,3 @@
-.receipt[hidden] { display: none; }
-
 .basket-page {
     min-height: 100vh;
     color: #303030;
@@ -45,7 +43,8 @@
     gap: 43px;
 }
 
-/* Товары */
+/* ---------- Товары ---------- */
+
 .cart-items-panel {
     min-width: 0;
     border: 1px solid #d5d5d5;
@@ -130,19 +129,6 @@
     max-width: 180px;
 }
 
-.basket-item-category {
-    display: inline-block;
-    min-width: 55px;
-    margin-bottom: 7px;
-    padding: 5px 9px;
-    background: #58A292;
-    color: #fff;
-    font-size: 9px;
-    line-height: 1;
-    text-align: center;
-    text-transform: uppercase;
-}
-
 .basket-item-title {
     margin: 7px 0;
     color: #222;
@@ -212,7 +198,7 @@
     flex-direction: column;
     align-items: flex-end;
     min-width: 0;
-    margin-left: 60px; 
+    margin-left: 60px;
 }
 
 .remove-item {
@@ -255,7 +241,8 @@
     white-space: nowrap;
 }
 
-/* Оформление заказа */
+/* ---------- Оформление заказа ---------- */
+
 .order-summary {
     width: 100%;
     min-height: 232px;
@@ -327,7 +314,6 @@
 }
 
 .checkout-button {
-    position: relative;
     width: 100%;
     min-height: 30px;
     padding: 8px 12px;
@@ -341,10 +327,10 @@
     letter-spacing: .5px;
     text-transform: uppercase;
     cursor: pointer;
-    overflow: hidden;
-    isolation: isolate;
     transition: background .25s ease, box-shadow .25s ease;
 }
+
+/* ---------- Эффект волны на кнопках ---------- */
 
 .ripple-button {
     position: relative;
@@ -388,146 +374,8 @@
     }
 }
 
-/* Чек */
-.receipt {
-    width: 100%;
-    min-height: 304px;
-    padding: 22px 24px 23px;
-    color: #303030;
-    border: 1px solid #a5a5a5;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+/* ---------- Модальное окно подтверждения ---------- */
 
-.receipt-success-icon {
-    width: 55px;
-    height: 55px;
-    flex-shrink: 0;
-}
-
-.receipt-success-image {
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.receipt-title {
-    margin: 15px 0 16px;
-    font-size: 20px;
-    line-height: 1.3;
-    font-weight: 500;
-    text-align: center;
-}
-
-.receipt-details {
-    width: 100%;
-    max-width: 400px;
-    margin-top: 20px;
-}
-
-.receipt-items {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.receipt-item {
-    display: flex;
-    align-items: baseline;
-    gap: 4px;
-    min-width: 0;
-    font-size: 15px;
-    line-height: 1.3;
-}
-
-.receipt-item-name {
-    flex-shrink: 0;
-    white-space: nowrap;
-}
-
-.receipt-item-dots {
-    flex: 1;
-    min-width: 8px;
-    border-bottom: 1px dotted #000000;
-    transform: translateY(-2px);
-}
-
-.receipt-item-price {
-    flex-shrink: 0;
-    white-space: nowrap;
-}
-
-.receipt-summary {
-    width: 100%;
-    margin-top: 35px;
-}
-
-.receipt-count,
-.receipt-total {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 12px;
-}
-
-.receipt-count {
-    font-size: 12px;
-    opacity: 70%;
-    line-height: 1.4;
-}
-
-.receipt-total {
-    margin-top: 5px;
-}
-
-.receipt-label {
-    font-size: 14px;
-}
-
-.receipt-count-value {
-    white-space: nowrap;
-    font-size: 14px;
-}
-
-.receipt-total-label,
-.receipt-total-price {
-    margin: 0;
-    font-size: 20px;
-    line-height: 1.3;
-    font-weight: 700;
-}
-
-.receipt-total-price {
-    white-space: nowrap;
-}
-
-.receipt-done-button {
-    width: 300px;
-    min-height: 25px;
-    margin-top: 22px;
-    padding: 7px 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #2e4da8;
-    color: #ffffff;
-    border: transparent;
-    text-decoration: none;
-    text-align: center;
-    font-size: 12px;
-    line-height: 1.4;
-    font-weight: 500;
-    transition: background-color 0.25s ease;
-}
-
-.receipt-done-button:hover {
-    background: #2e4da8;
-}
-
-/* модалка */
 .modal-overlay {
     position: fixed;
     inset: 0;
@@ -539,7 +387,9 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-.modal-overlay[hidden] {
+.modal-overlay[hidden],
+.modal-btn[hidden],
+.receipt-overlay[hidden] {
     display: none;
 }
 
@@ -582,10 +432,6 @@
     cursor: pointer;
 }
 
-.modal-btn[hidden] {
-    display: none;
-}
-
 .modal-btn-secondary {
     background: transparent;
     color: inherit;
@@ -602,26 +448,248 @@
     color: #fff;
     transition: all 0.3s ease;
 }
-.modal-btn-danger:hover{
+
+.modal-btn-danger:hover {
     background: #d93125f6;
 }
 
-@media (max-width: 480px) {
-    .modal-actions {
-        flex-direction: column-reverse;
+/* ---------- Чек (модальное окно успешного заказа) ---------- */
+
+.receipt-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.55);
+    backdrop-filter: blur(5px);
+}
+
+.receipt {
+    width: min(1074px, 100%);
+    min-height: min(566px, calc(100vh - 32px));
+    max-height: calc(100vh - 32px);
+    overflow-y: auto;
+    padding: 35px 50px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 18px;
+    color: #2A2A2A;
+    background: #fff;
+    border: 1px solid #3A5EC3;
+    border-radius: 0;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.2);
+    animation: receipt-modal-in 0.25s ease-out;
+}
+
+@keyframes receipt-modal-in {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.97);
     }
 
-    .modal-btn {
-        width: 100%;
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
 }
 
-/* Адаптив: от большего к меньшему */
+.receipt-success-icon {
+    width: 80px;
+    height: 80px;
+    flex-shrink: 0;
+}
 
-/* ===== ПЛАНШЕТЫ ===== */
+.receipt-success-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.receipt-title {
+    margin: 5px 0 15px;
+    font-size: 30px;
+    line-height: 1.3;
+    font-weight: 500;
+    text-align: center;
+}
+
+.receipt-details {
+    width: 100%;
+    max-width: 750px;
+    margin: 20px auto 0;
+}
+
+.receipt-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.receipt-item {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    min-width: 0;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.receipt-item-name {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.receipt-item-dots {
+    flex: 1;
+    min-width: 12px;
+    margin: 0 10px; 
+    border-bottom: 1px dashed #2A2A2A; 
+    transform: translateY(-2px);
+}
+
+.receipt-item-price {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+.receipt-summary {
+    width: 100%;
+    margin-top: 55px;
+    padding: 0 12px;
+    box-sizing: border-box;
+}
+
+.receipt-count,
+.receipt-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.receipt-count {
+    font-size: 17px;
+    line-height: 1.4;
+}
+
+.receipt-total {
+    margin-top: 10px;
+}
+
+.receipt-label,
+.receipt-count-value {
+    font-size: 14px;
+}
+
+.receipt-count-value,
+.receipt-total-price {
+    white-space: nowrap;
+}
+
+.receipt-total-label,
+.receipt-total-price {
+    margin: 0;
+    font-size: 25px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+
+.receipt-done-button {
+    width: 100%;
+    max-width: 320px;
+    min-height: 46px;
+    margin-top: auto;
+    margin-bottom: 5px;
+    padding: 7px 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #2e4da8;
+    color: #fff;
+    border: 0;
+    text-decoration: none;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.4;
+    font-weight: 500;
+    transition: background-color 0.25s ease;
+}
+
+/* ---------- Адаптив ---------- */
+
+@media (min-width: 769px) {
+    .basket-item {
+        grid-template-columns: 160px minmax(0, 1fr) auto 140px;
+        align-items: center;
+        column-gap: 24px;
+    }
+
+    .basket-item-image {
+        width: 160px;
+        height: 100px;
+    }
+
+    .basket-item-info {
+        min-width: 0;
+    }
+
+    .basket-item-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .quantity-counter {
+        justify-self: center;
+    }
+
+    .basket-item-details {
+        width: 140px;
+        justify-self: end;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 768px) {
+    .receipt {
+        min-height: auto;
+        padding: 24px;
+        gap: 12px;
+    }
+
+    .receipt-success-icon {
+        width: 65px;
+        height: 65px;
+    }
+
+    .receipt-title {
+        font-size: 25px;
+    }
+
+    .receipt-details {
+        max-width: 100%;
+    }
+
+    .receipt-summary {
+        margin-top: 30px;
+    }
+
+    .receipt-done-button {
+        margin-top: 30px;
+    }
+}
 
 @media (max-width: 760px) {
-
     .basket-container {
         padding-top: 30px;
         padding-bottom: 40px;
@@ -635,20 +703,10 @@
         grid-template-columns: minmax(0, 1fr);
         gap: 22px;
     }
-
-    .order-summary {
-        width: 100%;
-        max-width: none;
-    }
 }
 
-
-/* ===== МОБИЛЬНЫЕ УСТРОЙСТВА ===== */
-
 @media (max-width: 480px) {
-
-    /* Общие отступы */
-
+    /* Общие */
     .basket-container {
         padding: 24px 14px 35px;
     }
@@ -665,9 +723,7 @@
         font-size: 13px;
     }
 
-
     /* Заголовок корзины */
-
     .cart-panel-header {
         min-height: 45px;
         padding: 9px 12px;
@@ -682,26 +738,22 @@
         font-size: 10px;
     }
 
-
     /* Список товаров */
-
     .cart-items-list {
         padding: 18px 12px;
     }
 
     .basket-item {
-        display: grid;
         grid-template-columns: 72px minmax(0, 1fr) 45px;
         grid-template-rows: auto auto;
         column-gap: 9px;
         row-gap: 9px;
-        align-items: start;
     }
 
     .basket-item + .basket-item {
-        border-top: 1px solid #777777;
-        padding-top: 18px;
         margin-top: 18px;
+        padding-top: 18px;
+        border-top: 1px solid #777;
     }
 
     .basket-item-image {
@@ -709,23 +761,13 @@
         grid-row: 1 / 3;
         width: 72px;
         height: 66px;
-        object-fit: cover;
     }
-
-
-    /* Информация о товаре */
 
     .basket-item-info {
         grid-column: 2;
         grid-row: 1;
         min-width: 0;
         max-width: none;
-    }
-
-    .basket-item-category {
-        margin-bottom: 5px;
-        padding: 4px 7px;
-        font-size: 9px;
     }
 
     .basket-item-title {
@@ -738,9 +780,6 @@
     .basket-item-unit-label {
         font-size: 10px;
     }
-
-
-    /* Счётчик количества */
 
     .quantity-counter {
         grid-column: 2;
@@ -756,16 +795,10 @@
         font-size: 11px;
     }
 
-
-    /* Удаление и стоимость */
-
     .basket-item-details {
         grid-column: 3;
         grid-row: 1 / 3;
-        display: flex;
-        flex-direction: column;
         justify-content: space-between;
-        align-items: flex-end;
         min-height: 66px;
         margin: 0;
     }
@@ -791,9 +824,7 @@
         font-size: 10px;
     }
 
-
-    /* Блок оформления заказа */
-
+    /* Блок оформления */
     .order-summary {
         min-height: auto;
         padding: 20px 16px;
@@ -831,39 +862,28 @@
         font-size: 13px;
     }
 
-
-    /* Чек после оформления */
+    /* Чек */
+    .receipt-overlay {
+        padding: 12px;
+    }
 
     .receipt {
-        min-height: auto;
-        padding: 22px 14px;
+        width: 100%;
+        padding: 22px 16px;
     }
 
     .receipt-success-icon {
-        width: 55px;
-        height: 55px;
+        width: 40px;
+        height: 40px;
     }
 
     .receipt-title {
-        margin: 15px 0;
-        font-size: 19px;
-    }
-
-    .receipt-details {
-        width: 100%;
-        max-width: 100%;
-        margin-top: 15px;
-    }
-
-    .receipt-items {
-        gap: 12px;
+        font-size: 22px;
     }
 
     .receipt-item {
-        display: flex;
-        align-items: baseline;
         gap: 5px;
-        font-size: 11px;
+        font-size: 14px;
     }
 
     .receipt-item-name {
@@ -873,42 +893,35 @@
         overflow-wrap: anywhere;
     }
 
-    .receipt-item-dots {
-        flex: 1;
-        min-width: 8px;
-    }
-
-    .receipt-item-price {
-        white-space: nowrap;
-    }
-
     .receipt-summary {
-        margin-top: 28px;
+        margin-top: 25px;
+        padding: 0 5px;
     }
 
     .receipt-count {
-        font-size: 12px;
+        font-size: 14px;
     }
 
     .receipt-total-label,
     .receipt-total-price {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     .receipt-done-button {
-        width: 100%;
-        max-width: 300px;
         min-height: 42px;
-        margin-top: 24px;
         font-size: 14px;
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal-btn {
+        width: 100%;
     }
 }
 
-
-/* ===== ОЧЕНЬ УЗКИЕ ТЕЛЕФОНЫ ===== */
-
 @media (max-width: 350px) {
-
     .basket-container {
         padding-left: 10px;
         padding-right: 10px;
@@ -939,24 +952,10 @@
     .basket-item-total {
         font-size: 12px;
     }
-
-    .receipt {
-        padding: 20px 10px;
-    }
-
-    .receipt-item {
-        font-size: 10px;
-    }
-
-    .receipt-total-label,
-    .receipt-total-price {
-        font-size: 16px;
-    }
 }
 
+/* ---------- Тёмная тема ---------- */
 
-
-/* Тёмная тема */
 @media (prefers-color-scheme: dark) {
     .basket-page {
         color-scheme: dark;
@@ -985,16 +984,15 @@
         border-bottom-color: #777777;
     }
 
-    .cart-panel-title {
+    .cart-panel-title,
+    .basket-item-title {
         color: #F5F5F5;
     }
 
-    .clear-cart-icon {
-        filter: brightness(0) invert(1);
-    }
-
+    .clear-cart-icon,
     .remove-item-icon {
         filter: brightness(0) invert(1);
+        opacity: 0.8;
     }
 
     .clear-cart {
@@ -1002,12 +1000,7 @@
     }
 
     .clear-cart:hover {
-        color: #569E95;
         filter: brightness(0) saturate(100%) invert(57%) sepia(17%) saturate(1000%) hue-rotate(116deg) brightness(91%) contrast(87%);
-    }
-
-    .basket-item-title {
-        color: #F5F5F5;
     }
 
     .basket-item-unit-label,
@@ -1015,7 +1008,9 @@
         color: #999999;
     }
 
-    .basket-item-total {
+    .basket-item-total,
+    .order-total-title,
+    .order-total-price {
         color: #FFFFFF;
     }
 
@@ -1028,6 +1023,10 @@
         color: #F5F5F5;
     }
 
+    .counter-btn:hover {
+        background-color: #3A3A3A;
+    }
+
     .counter-input {
         background-color: #292929;
         color: #FFFFFF;
@@ -1035,23 +1034,9 @@
         border-left-color: #666666;
     }
 
-    .counter-btn:hover {
-        background-color: #3A3A3A;
-    }
-
-    .remove-item-icon,
-    .clear-cart-icon {
-        opacity: 0.8;
-    }
-
     .order-summary {
         background-color: #2A2A2A;
         border-color: #777777;
-    }
-
-    .order-total-title,
-    .order-total-price {
-        color: #FFFFFF;
     }
 
     .cart-count-label,
@@ -1074,81 +1059,22 @@
         color: #F2F2F2;
     }
 
-    .checkout-button {
-        background-color: #3B5FC5;
-        color: #FFFFFF;
-    }
-
-    .checkout-button:hover {
+    .checkout-button:hover,
+    .receipt-done-button:hover {
         background-color: #496ED5;
-    }
-
-    .receipt {
-        background-color: #1B1B1B;
-        color: #F2F2F2;
-        border-color: #777777;
-    }
-
-    .receipt-title,
-    .receipt-item-name,
-    .receipt-item-price,
-    .receipt-total-label,
-    .receipt-total-price {
-        color: #F2F2F2;
-    }
-
-    .receipt-item-dots {
-        border-bottom-color: #777777;
-    }
-
-    .receipt-label,
-    .receipt-count-value {
-        color: #B0B0B0;
     }
 
     .receipt-done-button {
         background-color: #3B5FC5;
+    }
+
+    .receipt {
+        background-color: #252525;
         color: #FFFFFF;
+        border-color: #777777;
     }
 
-    .receipt-done-button:hover {
-        background-color: #496ED5;
-    }
-}
-
-@media (min-width: 769px) {
-    .basket-item {
-        display: grid;
-        grid-template-columns: 160px minmax(0, 1fr) auto 140px;
-        align-items: center;
-        column-gap: 24px;
-    }
-
-    .basket-item-image {
-        width: 160px;
-        height: 100px;
-        object-fit: cover;
-    }
-
-    .basket-item-info {
-        min-width: 0;
-    }
-
-    .basket-item-title {
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-    }
-
-    .quantity-counter {
-        justify-self: center;
-    }
-
-    .basket-item-details {
-        width: 140px;
-        justify-self: end;
-        text-align: right;
-        font-variant-numeric: tabular-nums;
-        white-space: nowrap;
+    .receipt-item-dots {
+        border-bottom-color: #FFFFFF;
     }
 }
