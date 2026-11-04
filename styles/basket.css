@@ -453,6 +453,59 @@
     background: #d93125f6;
 }
 
+/* --- Кастомный селект (автокомплит) --- */
+.custom-select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.custom-select-wrapper .delivery-select {
+    /* Берем стили от вашего старого селекта */
+    box-sizing: border-box;
+    width: 100%;
+    height: 35px;
+    padding: 0 12px;
+    background: #fff;
+    color: #777;
+    border: 1px solid #c6c6c6;
+    border-radius: 0;
+    outline-color: #3a5ec3;
+    font-family: "Inter", sans-serif;
+    font-size: 12px;
+}
+
+.custom-options-list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    max-height: 150px;
+    overflow-y: auto;
+    margin: 2px 0 0 0;
+    padding: 0;
+    list-style: none;
+    background: #fff;
+    border: 1px solid #c6c6c6;
+    z-index: 100;
+    display: none; /* Скрыто по умолчанию */
+}
+
+.custom-options-list.active {
+    display: block; /* Показываем при фокусе/вводе */
+}
+
+.custom-options-list li {
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #333;
+    cursor: pointer;
+    font-family: "Inter", sans-serif;
+}
+
+.custom-options-list li:hover {
+    background-color: #f0f0f0;
+}
+
 /* ---------- Чек (модальное окно успешного заказа) ---------- */
 
 .receipt-overlay {
@@ -625,6 +678,30 @@
 
 /* ---------- Адаптив ---------- */
 
+
+
+/* --- Адаптация под темную тему --- */
+@media (prefers-color-scheme: dark) {
+    .custom-select-wrapper .delivery-select {
+        background-color: #2A2A2A;
+        color: #F2F2F2;
+        border-color: #777777;
+    }
+    
+    .custom-options-list {
+        background-color: #2A2A2A;
+        border-color: #777777;
+    }
+    
+    .custom-options-list li {
+        color: #F2F2F2;
+    }
+    
+    .custom-options-list li:hover {
+        background-color: #3A3A3A;
+    }
+}
+
 @media (min-width: 769px) {
     .basket-item {
         grid-template-columns: 160px minmax(0, 1fr) auto 140px;
@@ -721,6 +798,10 @@
 
     .back-to-menu {
         font-size: 13px;
+    }
+
+    .custom-select-wrapper .delivery-select {
+        height: 39px;
     }
 
     /* Заголовок корзины */

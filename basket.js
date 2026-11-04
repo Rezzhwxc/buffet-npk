@@ -378,7 +378,7 @@ checkoutForm.addEventListener("submit", async event => {
     }
 
     if (!locationSelect.value) {
-        locationSelect.focus();
+        document.getElementById("delivery-location-input").focus();
         return;
     }
 
@@ -481,6 +481,59 @@ document.querySelectorAll(".ripple-button").forEach(button => {
         void button.offsetWidth;
 
         button.classList.add("ripple");
+    });
+});
+
+/* ---------- Умный селект для выбора кабинета ---------- */
+document.addEventListener("DOMContentLoaded", () => {
+    const visibleInput = document.getElementById("delivery-location-input");
+    const hiddenInput = document.getElementById("delivery-location");
+    const optionsList = document.getElementById("delivery-options-list");
+
+    // Список доступных кабинетов
+    const allRooms = ["225", "415", "110"];
+
+    function renderOptions(filterText = "") {
+        optionsList.innerHTML = "";
+        
+        const filtered = allRooms.filter(room => room.includes(filterText));
+
+        if (filtered.length === 0) {
+            const li = document.createElement("li");
+            li.textContent = "Не найдено";
+            li.style.color = "#999";
+            li.style.cursor = "default";
+            optionsList.appendChild(li);
+        } else {
+            filtered.forEach(room => {
+                const li = document.createElement("li");
+                li.textContent = room;
+                li.addEventListener("click", () => {
+                    visibleInput.value = room;
+                    hiddenInput.value = room; 
+                    optionsList.classList.remove("active");
+                });
+                optionsList.appendChild(li);
+            });
+        }
+    }
+
+    visibleInput.addEventListener("focus", () => {
+        renderOptions(visibleInput.value);
+        optionsList.classList.add("active");
+    });
+
+    visibleInput.addEventListener("input", (e) => {
+        const text = e.target.value.trim();
+        hiddenInput.value = text; 
+        renderOptions(text);
+        optionsList.classList.add("active");
+    });
+
+    document.addEventListener("click", (e) => {
+        if (!e.target.closest(".custom-select-wrapper")) {
+            optionsList.classList.remove("active");
+        }
     });
 });
 

@@ -54,17 +54,22 @@
                             Куда привезти заказ?
                         </label>
 
-                        <select
-                            name="delivery-location"
-                            id="delivery-location"
-                            class="delivery-select"
-                            required
-                        >
-                            <option value="" disabled selected>Кабинет</option>
-                            <option value="225">225</option>
-                            <option value="415">415</option>
-                            <option value="110">110</option>
-                        </select>
+                        <div class="custom-select-wrapper">
+                            <!-- Видимый инпут для ввода и фильтрации -->
+                            <input 
+                                type="text" 
+                                id="delivery-location-input" 
+                                class="delivery-select" 
+                                placeholder="Кабинет" 
+                                autocomplete="off"
+                            >
+                            
+                            <!-- Скрытый инпут для basket.js -->
+                            <input type="hidden" name="delivery-location" id="delivery-location" required>
+
+                            <!-- Выпадающий список -->
+                            <ul class="custom-options-list" id="delivery-options-list"></ul>
+                        </div>
 
                         <button type="submit" class="checkout-button ripple-button">
                             <span>Заказать</span>
