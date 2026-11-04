@@ -476,6 +476,9 @@ document.querySelectorAll(".ripple-button").forEach(button => {
             `${event.clientY - rect.top}px`
         );
 
+        if (button.disabled){
+            return;
+        }else
         button.classList.remove("ripple");
 
         void button.offsetWidth;
