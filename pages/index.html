@@ -14,8 +14,11 @@
 <body>
 
     <div class="bunner">
-        <img src="/img/bunnerPart1.png" class="mainBunner" alt="">
-
+        <picture>
+            <source srcset="/img/bunnerPart1-mobile.png" media="(max-width: 600px)">
+            <img src="/img/bunnerPart1.png" class="mainBunner" alt="">
+        </picture>
+        
         <div class="parts">
             <img src="/img/bunnerPart2.png" class="textBunner" alt="">
             <img src="/img/bunnerPart3.png" class="characterBunner" alt="">
@@ -33,9 +36,12 @@
                 </div>
 
                 <ul class="menu-tabs">
+                    <li>Все</li>
                     <li>Выпечка</li>
                     <li>Напитки</li>
-                    <li>Новинки</li>
+                    <li>Десерты</li>
+                    <li>Заготовки</li>
+                    <li>Полуфабрикаты</li>
                 </ul>
             </div>
 
@@ -86,14 +92,8 @@
                     Введите свой ID:
                 </label>
 
-                <input
-                    type="text"
-                    id="authInput"
-                    placeholder="ID сотрудника"
-                    autocomplete="off"
-                    spellcheck="false"
-                    inputmode="numeric"
-                >
+                <input type="text" id="authInput" placeholder="ID сотрудника" autocomplete="off" spellcheck="false"
+                    inputmode="numeric">
 
                 <p class="auth-error" id="authError" role="alert"></p>
 
