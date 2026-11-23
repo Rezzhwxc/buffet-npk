@@ -1,4 +1,4 @@
-const searchInput = document.getElementById('index-search');
+const searchInput = document.getElementById("index-search");
 
 function normalizeText(value) {
     return String(value ?? "")
@@ -8,19 +8,25 @@ function normalizeText(value) {
 }
 
 function applySearch() {
-    if (!searchInput) return;
+    const baseList = typeof getFilteredByCategory === "function"
+        ? getFilteredByCategory(allProducts)
+        : allProducts;
+
+    if (!searchInput) {
+        renderMenu(baseList);
+        return;
+    }
 
     const query = normalizeText(searchInput.value);
 
     if (!query) {
-        renderMenu(allProducts);
+        renderMenu(baseList);
         return;
     }
 
-    // "кофе латте" найдёт товар, где есть оба слова в любом порядке
     const words = query.split(/\s+/);
 
-    const found = allProducts.filter(product => {
+    const found = baseList.filter(product => {
         const name = normalizeText(product.name);
         return words.every(word => name.includes(word));
     });

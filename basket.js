@@ -1,6 +1,11 @@
 const API_BASE = "/api";
 const SESSION_KEY = "employeeId";
 
+const ENDPOINTS = {
+    createOrder: `${API_BASE}/orders`,
+    locations: `${API_BASE}/locations`
+};
+
 const itemsList = document.querySelector(".cart-items-list");
 const totalEl = document.querySelector(".order-total-price");
 const countEl = document.querySelector(".cart-count-value");
@@ -21,8 +26,6 @@ const confirmCancelBtn = document.getElementById("confirmCancel");
 let confirmResolve = null;
 let lastFocused = null;
 
-/* ---------- Общие функции ---------- */
-
 function escapeHtml(value) {
     const div = document.createElement("div");
     div.textContent = String(value ?? "");
@@ -38,8 +41,6 @@ function unlockScroll() {
         document.body.style.overflow = "";
     }
 }
-
-/* ---------- Модальное окно подтверждения ---------- */
 
 function closeConfirm(result) {
     if (!confirmResolve) return;
@@ -73,7 +74,6 @@ function showConfirm({
         confirmOkBtn.textContent = confirmText;
 
         confirmOkBtn.classList.toggle("modal-btn-danger", danger);
-
         confirmCancelBtn.hidden = cancelText === null;
 
         if (cancelText !== null) {
@@ -90,16 +90,14 @@ function showConfirm({
     });
 }
 
-confirmOkBtn.addEventListener("click", () => closeConfirm(true));
-confirmCancelBtn.addEventListener("click", () => closeConfirm(false));
+confirmOkBtn?.addEventListener("click", () => closeConfirm(true));
+confirmCancelBtn?.addEventListener("click", () => closeConfirm(false));
 
-confirmOverlay.addEventListener("click", event => {
+confirmOverlay?.addEventListener("click", event => {
     if (event.target === confirmOverlay) {
         closeConfirm(false);
     }
 });
-
-/* ---------- Клавиатура ---------- */
 
 document.addEventListener("keydown", event => {
     if (confirmResolve) {
@@ -112,7 +110,7 @@ document.addEventListener("keydown", event => {
             const buttons = [
                 confirmCancelBtn,
                 confirmOkBtn
-            ].filter(button => !button.hidden);
+            ].filter(button => button && !button.hidden);
 
             const first = buttons[0];
             const last = buttons[buttons.length - 1];
@@ -139,17 +137,11 @@ document.addEventListener("keydown", event => {
     }
 });
 
-/* ---------- Закрытие чека ---------- */
-
 function closeReceipt() {
     if (!receiptOverlay || receiptOverlay.hidden) return;
-
     receiptOverlay.hidden = true;
-
     unlockScroll();
 }
-
-/* ---------- Корзина ---------- */
 
 function createItem(item) {
     const article = document.createElement("article");
@@ -176,7 +168,7 @@ function createItem(item) {
                 type="button"
                 class="counter-btn minus"
                 aria-label="Уменьшить количество"
-            >−</i></button>
+            >−</button>
 
             <input
                 type="number"
@@ -226,6 +218,8 @@ function render() {
     const cart = getCart();
     const { count, total } = getTotals(cart);
 
+    if (!itemsList) return;
+
     itemsList.innerHTML = "";
 
     if (cart.length === 0) {
@@ -238,24 +232,19 @@ function render() {
         });
     }
 
-    totalEl.textContent = formatPrice(total);
-    countEl.textContent = `${count} шт.`;
+    if (totalEl) totalEl.textContent = formatPrice(total);
+    if (countEl) countEl.textContent = `${count} шт.`;
 
-    checkoutBtn.disabled = cart.length === 0;
-    clearBtn.disabled = cart.length === 0;
+    if (checkoutBtn) checkoutBtn.disabled = cart.length === 0;
+    if (clearBtn) clearBtn.disabled = cart.length === 0;
 }
 
-/* ---------- Изменение количества ---------- */
-
-itemsList.addEventListener("click", event => {
+itemsList?.addEventListener("click", event => {
     const itemEl = event.target.closest(".basket-item");
-
     if (!itemEl) return;
 
     const code = itemEl.dataset.code;
-
     const item = getCart().find(i => i.code === code);
-
     if (!item) return;
 
     if (event.target.closest(".plus")) {
@@ -271,24 +260,19 @@ itemsList.addEventListener("click", event => {
     render();
 });
 
-/* ---------- Ручной ввод количества ---------- */
-
-itemsList.addEventListener("change", event => {
+itemsList?.addEventListener("change", event => {
     if (!event.target.matches(".counter-input")) return;
 
     const itemEl = event.target.closest(".basket-item");
+    if (!itemEl) return;
 
-    setQty(
-        itemEl.dataset.code,
-        Number(event.target.value)
-    );
+    const parsed = Number(event.target.value);
+    setQty(itemEl.dataset.code, Number.isFinite(parsed) && parsed > 0 ? parsed : 1);
 
     render();
 });
 
-/* ---------- Очистка корзины ---------- */
-
-clearBtn.addEventListener("click", async () => {
+clearBtn?.addEventListener("click", async () => {
     if (getCart().length === 0) return;
 
     const ok = await showConfirm({
@@ -305,24 +289,21 @@ clearBtn.addEventListener("click", async () => {
     }
 });
 
-/* ---------- Формирование чека ---------- */
-
 function showReceipt(order, orderNumber = "") {
-    const itemsBox = receipt.querySelector(".receipt-items");
+    if (!receipt || !receiptOverlay) return;
 
+    const itemsBox = receipt.querySelector(".receipt-items");
     itemsBox.innerHTML = "";
 
-    // Если есть номер заказа из 1С, можем показать его в заголовке или подзаголовке чека
     const titleEl = receipt.querySelector(".receipt-title");
-    if (orderNumber) {
-        titleEl.textContent = `Заказ №${orderNumber} оформлен!`;
-    } else {
-        titleEl.textContent = "Заказ оформлен!";
+    if (titleEl) {
+        titleEl.textContent = orderNumber
+            ? `Заказ №${orderNumber} оформлен!`
+            : "Заказ оформлен!";
     }
 
     order.items.forEach(item => {
         const row = document.createElement("div");
-
         row.className = "receipt-item";
 
         const name = document.createElement("span");
@@ -338,30 +319,21 @@ function showReceipt(order, orderNumber = "") {
         price.textContent = formatPrice(item.price * item.qty);
 
         row.append(name, dots, price);
-
         itemsBox.appendChild(row);
     });
 
-    receipt.querySelector(".receipt-count-value").textContent =
-        `${order.count} шт.`;
-
-    receipt.querySelector(".receipt-total-price").textContent =
-        formatPrice(order.total);
+    receipt.querySelector(".receipt-count-value").textContent = `${order.count} шт.`;
+    receipt.querySelector(".receipt-total-price").textContent = formatPrice(order.total);
 
     receiptOverlay.hidden = false;
-
     lockScroll();
-
-    receipt.querySelector(".receipt-done-button").focus();
+    receipt.querySelector(".receipt-done-button")?.focus();
 }
 
-/* ---------- Оформление заказа (Интеграция с 1С) ---------- */
-
-checkoutForm.addEventListener("submit", async event => {
+checkoutForm?.addEventListener("submit", async event => {
     event.preventDefault();
 
     const cart = getCart();
-
     if (cart.length === 0) return;
 
     const employeeId = sessionStorage.getItem(SESSION_KEY);
@@ -373,37 +345,33 @@ checkoutForm.addEventListener("submit", async event => {
             confirmText: "Понятно",
             cancelText: null
         });
-
         return;
     }
 
-    if (!locationSelect.value) {
-        document.getElementById("delivery-location-input").focus();
+    const location = locationSelect?.value?.trim();
+    if (!location) {
+        document.getElementById("delivery-location-input")?.focus();
         return;
     }
 
     const { count, total } = getTotals(cart);
 
-    // Формируем тело запроса строго под требования обработчика 1С:
-    // employeeId, location, items (содержит code и qty)
     const payload = {
-        employeeId: employeeId,
-        location: locationSelect.value,
+        employeeId,
+        location,
         items: cart.map(item => ({
             code: item.code,
             qty: item.qty
         }))
     };
 
-    // Защита от повторного нажатия
-    checkoutBtn.disabled = true;
-    const originalButtonText = checkoutBtn.querySelector("span")?.textContent || "Заказать";
-    if (checkoutBtn.querySelector("span")) {
-        checkoutBtn.querySelector("span").textContent = "Отправка...";
-    }
+    if (checkoutBtn) checkoutBtn.disabled = true;
+    const labelEl = checkoutBtn?.querySelector("span");
+    const originalButtonText = labelEl?.textContent || "Заказать";
+    if (labelEl) labelEl.textContent = "Отправка...";
 
     try {
-        const response = await fetch(`${API_BASE}/orders`, {
+        const response = await fetch(ENDPOINTS.createOrder, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -412,25 +380,19 @@ checkoutForm.addEventListener("submit", async event => {
             body: JSON.stringify(payload)
         });
 
-        const result = await response.json();
+        const result = await response.json().catch(() => ({}));
 
-        if (!response.ok || !result.success) {
+        if (!response.ok || result.success === false) {
             throw new Error(result.message || "Ошибка при создании заказа в 1С");
         }
 
-        console.log("Заказ успешно создан в 1С:", result);
-
-        // Объект заказа для отрисовки чека на клиенте
         const orderForReceipt = {
             items: cart.map(item => ({ ...item })),
             count,
             total
         };
 
-        // Показываем чек с номером из 1С (orderNumber)
         showReceipt(orderForReceipt, result.orderNumber);
-
-        // Очищаем корзину только после успешного ответа
         clearCart();
         render();
 
@@ -444,102 +406,196 @@ checkoutForm.addEventListener("submit", async event => {
             danger: true
         });
     } finally {
-        // Возвращаем кнопку в исходное состояние
-        checkoutBtn.disabled = false;
-        if (checkoutBtn.querySelector("span")) {
-            checkoutBtn.querySelector("span").textContent = originalButtonText;
-        }
+        if (checkoutBtn) checkoutBtn.disabled = false;
+        if (labelEl) labelEl.textContent = originalButtonText;
     }
 });
 
-/* ---------- Закрытие чека по фону ---------- */
-
-receiptOverlay.addEventListener("click", event => {
+receiptOverlay?.addEventListener("click", event => {
     if (event.target === receiptOverlay) {
         closeReceipt();
     }
 });
 
-/* ---------- Анимация кнопок ---------- */
-
 document.querySelectorAll(".ripple-button").forEach(button => {
     button.addEventListener("pointerenter", event => {
         const rect = button.getBoundingClientRect();
 
-        button.style.setProperty(
-            "--x",
-            `${event.clientX - rect.left}px`
-        );
+        button.style.setProperty("--x", `${event.clientX - rect.left}px`);
+        button.style.setProperty("--y", `${event.clientY - rect.top}px`);
 
-        button.style.setProperty(
-            "--y",
-            `${event.clientY - rect.top}px`
-        );
+        if (button.disabled) return;
 
-        if (button.disabled){
-            return;
-        }else
         button.classList.remove("ripple");
-
         void button.offsetWidth;
-
         button.classList.add("ripple");
     });
 });
 
-/* ---------- Умный селект для выбора кабинета ---------- */
-document.addEventListener("DOMContentLoaded", () => {
+function normalizeCabinetQuery(value) {
+    return String(value ?? "")
+        .toLowerCase()
+        .replaceAll("ё", "е")
+        .replaceAll(".", "")
+        .replace(/\s+/g, " ")
+        .trim();
+}
+
+function getCabinetLabel(cabinet) {
+    const code = String(cabinet.code ?? "").trim();
+    const name = String(cabinet.name ?? "").trim();
+    return name || code;
+}
+
+async function fetchCabinetsFromApi() {
+    const response = await fetch(ENDPOINTS.locations, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json"
+        }
+    });
+
+    if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+    }
+
+    const data = await response.json();
+    if (!Array.isArray(data)) {
+        throw new Error("Некорректный формат списка кабинетов");
+    }
+
+    return data
+        .map(item => {
+            if (typeof item === "string") {
+                const val = item.trim();
+                return val ? { code: val, name: val, territory: "" } : null;
+            }
+            const code = String(item?.code ?? item?.Код ?? "").trim();
+            const name = String(item?.name ?? item?.Наименование ?? code).trim();
+            const territory = String(item?.territory ?? item?.Территория ?? "").trim();
+            if (!code && !name) return null;
+            return {
+                code: code || name,
+                name: name || code,
+                territory
+            };
+        })
+        .filter(Boolean);
+}
+
+document.addEventListener("DOMContentLoaded", async () => {
     const visibleInput = document.getElementById("delivery-location-input");
     const hiddenInput = document.getElementById("delivery-location");
     const optionsList = document.getElementById("delivery-options-list");
 
-    // Список доступных кабинетов
-    const allRooms = ["225", "415", "110"];
+    if (!visibleInput || !hiddenInput || !optionsList) return;
 
-    function renderOptions(filterText = "") {
+    let cabinets = [];
+    let isLoadingCabinets = true;
+
+    function renderCabinetTiles(filterText = "") {
         optionsList.innerHTML = "";
-        
-        const filtered = allRooms.filter(room => room.includes(filterText));
+
+        if (isLoadingCabinets && cabinets.length === 0) {
+            const li = document.createElement("li");
+            li.className = "cabinet-empty";
+            li.textContent = "Загрузка кабинетов...";
+            optionsList.appendChild(li);
+            return;
+        }
+
+        const normalizedFilter = normalizeCabinetQuery(filterText);
+        const words = normalizedFilter ? normalizedFilter.split(" ") : [];
+
+        const filtered = words.length === 0
+            ? cabinets
+            : cabinets.filter(cab => {
+                const haystack = normalizeCabinetQuery(`${cab.code} ${cab.name} ${cab.territory}`);
+                const compactHaystack = haystack.replace(/[\s/]/g, "");
+                return words.every(word => {
+                    const compactWord = word.replace(/[\s/]/g, "");
+                    return haystack.includes(word) || (compactWord && compactHaystack.includes(compactWord));
+                });
+            });
 
         if (filtered.length === 0) {
             const li = document.createElement("li");
+            li.className = "cabinet-empty";
             li.textContent = "Не найдено";
-            li.style.color = "#999";
-            li.style.cursor = "default";
             optionsList.appendChild(li);
-        } else {
-            filtered.forEach(room => {
-                const li = document.createElement("li");
-                li.textContent = room;
-                li.addEventListener("click", () => {
-                    visibleInput.value = room;
-                    hiddenInput.value = room; 
-                    optionsList.classList.remove("active");
-                });
-                optionsList.appendChild(li);
-            });
+            return;
         }
+
+        filtered.forEach(cab => {
+            const li = document.createElement("li");
+            li.className = "cabinet-tile";
+            li.tabIndex = 0;
+
+            const label = getCabinetLabel(cab);
+            li.textContent = label;
+            li.title = cab.territory
+                ? `${label} (${cab.code}) — ${cab.territory}`
+                : (cab.name && cab.name !== cab.code ? `${cab.name} (${cab.code})` : label);
+
+            if (hiddenInput.value && hiddenInput.value === cab.code) {
+                li.classList.add("is-selected");
+            }
+
+            const selectCabinet = () => {
+                visibleInput.value = label;
+                hiddenInput.value = cab.code;
+                optionsList.classList.remove("active");
+            };
+
+            li.addEventListener("click", selectCabinet);
+            li.addEventListener("keydown", e => {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    selectCabinet();
+                }
+            });
+
+            optionsList.appendChild(li);
+        });
     }
 
     visibleInput.addEventListener("focus", () => {
-        renderOptions(visibleInput.value);
+        renderCabinetTiles(visibleInput.value);
         optionsList.classList.add("active");
     });
 
-    visibleInput.addEventListener("input", (e) => {
-        const text = e.target.value.trim();
-        hiddenInput.value = text; 
-        renderOptions(text);
+    visibleInput.addEventListener("input", e => {
+        const text = e.target.value;
+        const exactMatch = cabinets.find(
+            c => normalizeCabinetQuery(c.code) === normalizeCabinetQuery(text)
+                || normalizeCabinetQuery(c.name) === normalizeCabinetQuery(text)
+        );
+        hiddenInput.value = exactMatch ? exactMatch.code : text.trim();
+        renderCabinetTiles(text);
         optionsList.classList.add("active");
     });
 
-    document.addEventListener("click", (e) => {
+    document.addEventListener("click", e => {
         if (!e.target.closest(".custom-select-wrapper")) {
             optionsList.classList.remove("active");
         }
     });
-});
 
-/* ---------- Инициализация ---------- */
+    try {
+        cabinets = await fetchCabinetsFromApi();
+    } catch (error) {
+        console.error("Ошибка загрузки кабинетов:", error);
+        cabinets = [
+            { code: "225", name: "225", territory: "" },
+            { code: "415", name: "415", territory: "" },
+            { code: "110", name: "110", territory: "" }
+        ];
+    } finally {
+        isLoadingCabinets = false;
+        if (optionsList.classList.contains("active")) {
+            renderCabinetTiles(visibleInput.value);
+        }
+    }
+});
 
 render();

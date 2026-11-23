@@ -18,7 +18,7 @@
             <source srcset="/img/bunnerPart1-mobile.png" media="(max-width: 600px)">
             <img src="/img/bunnerPart1.png" class="mainBunner" alt="">
         </picture>
-        
+
         <div class="parts">
             <img src="/img/bunnerPart2.png" class="textBunner" alt="">
             <img src="/img/bunnerPart3.png" class="characterBunner" alt="">
@@ -94,6 +94,16 @@
 
                 <input type="text" id="authInput" placeholder="ID сотрудника" autocomplete="off" spellcheck="false"
                     inputmode="numeric">
+
+                <div class="custom-captcha-box">
+                    <div class="custom-captcha-row">
+                        <img id="captchaImage" class="custom-captcha-img" alt="Код с картинки">
+                        <button type="button" id="refreshCaptchaBtn" class="custom-captcha-refresh"
+                            title="Обновить капчу" aria-label="Обновить капчу">↻</button>
+                    </div>
+                    <input type="text" id="captchaInput" placeholder="Введите код с картинки" autocomplete="off"
+                        spellcheck="false" maxlength="8">
+                </div>
 
                 <p class="auth-error" id="authError" role="alert"></p>
 
