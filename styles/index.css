@@ -66,6 +66,7 @@
     padding-left: 0;
     padding-top: 15px;
     opacity: 70%;
+    width: fit-content;
 }
 
 .menu-tabs li {
@@ -74,7 +75,8 @@
     transition: color 0.3s, border-color 0.3s;
 }
 
-.menu-tabs li:hover {
+.menu-tabs li:hover,
+.menu-tabs li.active-filter {
     color: #41948a;
     cursor: pointer;
     border-bottom-color: #569E95;
@@ -270,21 +272,31 @@
 /* Авторизация */
 .auth-overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
+    inset: 0; /* тег шорткат вместо top, left, width, height */
+
     display: flex;
     justify-content: center;
     align-items: center;
+
     background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(16px);
+    backdrop-filter: blur(14px);
     z-index: 9999;
     pointer-events: auto;
+    touch-action: none;
+
+    padding: 20px;          
+    overflow-y: auto;
 }
 
 .auth-overlay.hidden {
     display: none;
+}
+
+html:has(.auth-overlay:not(.hidden)),
+body:has(.auth-overlay:not(.hidden)) {
+    overflow: hidden;
+    height: 100%;
+    overscroll-behavior: none;
 }
 
 .auth-modal {
@@ -292,6 +304,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    
+    width: 100%;
+    max-width: 460px;
+
     gap: 15px;
     padding: 35px 80px;
     background: transparent;
@@ -488,6 +504,17 @@
         align-items: stretch;
     }
 
+    .menu-tabs{  /* адаптив для фильтрации */
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 0.8fr));
+        gap: 12px;
+    }
+
+    .menu-tabs li{
+        padding: 0px;
+        width: fit-content;
+    }
+
     #mobileId {
         display: block;
     }
@@ -543,11 +570,23 @@
 
     .auth-modal {
         width: calc(100% - 32px);
-        padding: 28px 20px;
+        padding: 28px 24px;
+        margin-bottom: 50%; /* место для клавиатуры пользователей телефонов */
     }
 
     .auth-form {
         max-width: none;
+    }
+}
+
+@media (max-width: 350px){
+    .auth-modal {
+        width: 100%;
+        padding: 22px 16px;
+        margin-bottom: 60%; /* место для клавиатуры пользователей телефонов */
+    }
+    .menu-tabs{
+        grid-template-columns: repeat(3, minmax(0, 0.67fr));
     }
 }
 

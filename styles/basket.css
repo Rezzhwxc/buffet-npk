@@ -455,13 +455,13 @@
 }
 
 .modal-btn-danger {
-    background: #d931259c;
+    background: #3b5fc5;
     color: #fff;
     transition: all 0.3s ease;
 }
 
 .modal-btn-danger:hover {
-    background: #d93125f6;
+    background: #d93125e3;
 }
 
 /* --- Кастомный селект (автокомплит) --- */

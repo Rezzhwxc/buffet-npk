@@ -187,13 +187,29 @@ async function checkEmployee() {
     }
 }
 
+// 
+
 function closeModal() {
     const authOverlay = document.getElementById("authOverlay");
 
     if (authOverlay) {
-        authOverlay.style.display = "none";
+        authOverlay.classList.add("hidden"); //реализование класса который зачемто был, но не был использован
     }
 }
+
+document.addEventListener("DOMContentLoaded", () => { //сохранение подчеркивания на фильтре для понятной навигации
+    const tabs = document.querySelectorAll('.menu-tabs li');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            tabs.forEach(t => t.classList.remove('active-filter'));
+            
+            tab.classList.add('active-filter');
+        });
+    });
+});
+
+// 
 
 function normalizeCategory(value) {
     return String(value ?? "")
